@@ -143,12 +143,39 @@ struct cube_root_pow
   }
 };
 
+template <Number N>
+struct modulo
+{
+  N operator()(N x, N y) {
+    if (y == N(0)) return x;
+    return x % y;
+  }
+};
+
+template <>
+struct modulo <double>
+{
+  double operator()(double x, double y) {
+    if (y == double(0)) return x;
+    return fmod(x, y);
+  }
+};
+
+template <>
+struct modulo <float>
+{
+  float operator()(float x, float y) {
+    if (y == float(0)) return x;
+    return fmod(x, y);
+  }
+};
+
 template <Sequence S1, Sequence S2, Sequence S3, BinaryOperation Op>
 void time_test(const S1& s1, const S2& s2, S3& s3, Op op, size_t n, size_t m) {
-  typedef typename S1::iterator I;
+  //typedef typename S1::iterator I;
   timer t;
   t.start();
-  for (int i = 0; i < m; ++i)
+  for (size_t i = 0; i < m; ++i)
     std::transform(s1.begin(), s1.end(), s2.begin(), s3.begin(), op);
   double time = t.stop()/(double(n) * m);
   std::cout << std::setw(6) << std::fixed << std::setprecision(2) << time << "\t";
@@ -189,9 +216,10 @@ void print_header(size_t n, size_t m) {
 	    << "  norm\t" 
 	    << " cnvrt\t" 
 	    << "   div\t" 
-	    << "  sqrt\t"
-	    << "   pow\t"
-	    << std::endl;
+	    << "   mod\t"
+      << "  sqrt\t"
+	    << "   pow"
+      << std::endl;
 }
 
 template <Number T, template <Number N, class Alloc = std::allocator<N> > class Seq>
@@ -211,6 +239,7 @@ struct test_instructions
     time_test(v1, v2, v3, norm<T>(), n, m);
     time_test(v1, v2, v3, conversion<T>(), n, m);
     time_test(v1, v2, v3, divides<T>(), n, m);
+    time_test(v1, v2, v3, modulo<T>(), n, m);
     time_test(v1, v2, v3, square_root<T>(), n, m);
     time_test(v1, v2, v3, cube_root_pow<T>(), n, m);
     std::cout << std::endl;
