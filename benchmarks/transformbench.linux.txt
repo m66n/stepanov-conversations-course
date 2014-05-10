@@ -1,0 +1,50 @@
+Applying operation 100000000 times (sequence length 1000 by 100000 iterations) at: Sat May 10 12:21:51 2014
+          type	  plus	 fplus	 times	  norm	 cnvrt	   div	   mod	  sqrt	   pow
+ vector<int8_t>	  0.20	  3.25	  0.48	  0.65	  1.84	  3.95	  3.95	  8.91	129.22	
+vector<int16_t>	  0.54	  3.23	  0.58	  0.59	  1.98	  3.88	  4.13	  9.15	131.58	
+vector<int32_t>	  1.14	  3.21	  1.40	  1.53	  1.99	  3.87	  3.91	  9.22	132.28	
+vector<int64_t>	  1.62	  3.21	  2.98	  3.46	  1.84	 15.39	 15.62	  9.17	132.91	
+  vector<float>	  1.25	  3.21	  1.30	  1.18	  1.28	  5.49	 14.07	  8.71	132.43	
+ vector<double>	  1.39	  3.21	  1.39	  1.64	  1.38	  9.09	 12.29	  8.82	132.41	
+  deque<int8_t>	  1.85	  3.69	  2.04	  2.94	  3.25	  4.64	  4.65	  8.96	129.91	
+ deque<int16_t>	  1.87	  3.25	  2.08	  2.41	  3.30	  4.63	  4.63	  9.20	132.42	
+ deque<int32_t>	  1.91	  3.73	  2.09	  2.48	  2.91	  4.69	  4.69	  9.25	133.43	
+ deque<int64_t>	  1.90	  3.72	  2.03	  2.45	  2.98	 17.07	 17.48	  9.21	133.56	
+   deque<float>	  2.12	  3.29	  2.07	  2.56	  2.12	  5.54	 13.67	  9.28	132.78	
+  deque<double>	  2.13	  3.28	  1.94	  2.50	  2.13	  9.12	 11.17	  9.19	133.38	
+   list<int8_t>	  4.89	  5.94	  4.88	  4.89	  4.87	  4.95	  4.94	  9.12	132.06	
+  list<int16_t>	  5.21	  6.22	  5.21	  5.20	  5.19	  4.90	  4.89	  9.36	134.46	
+  list<int32_t>	  4.89	  5.95	  4.88	  4.89	  4.87	  4.88	  4.92	  9.17	134.12	
+  list<int64_t>	  4.88	  5.93	  4.87	  4.88	  4.87	 16.03	 16.15	  9.18	133.30	
+    list<float>	  4.89	  5.21	  4.87	  4.87	  4.89	  5.55	 13.00	  8.78	135.57	
+   list<double>	  4.90	  5.20	  4.87	  4.87	  4.88	  9.13	 10.78	  8.99	133.50
+
+build:
+g++ -std=c++11 -O3 -Wall -Wextra -pedantic -o "transformbench" "transformbench.cpp"
+
+uname -a:
+Linux bangkok 3.14.2-1-ARCH #1 SMP PREEMPT Sun Apr 27 11:28:44 CEST 2014 x86_64 GNU/Linux
+
+lscpu:
+Architecture:          x86_64
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                2
+On-line CPU(s) list:   0,1
+Thread(s) per core:    1
+Core(s) per socket:    2
+Socket(s):             1
+NUMA node(s):          1
+Vendor ID:             GenuineIntel
+CPU family:            6
+Model:                 23
+Model name:            Pentium(R) Dual-Core CPU       T4400  @ 2.20GHz
+Stepping:              10
+CPU MHz:               1200.000
+CPU max MHz:           2200.0000
+CPU min MHz:           1200.0000
+BogoMIPS:              4390.91
+L1d cache:             32K
+L1i cache:             32K
+L2 cache:              1024K
+NUMA node0 CPU(s):     0,1
