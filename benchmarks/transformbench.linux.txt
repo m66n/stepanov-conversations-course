@@ -1,3 +1,4 @@
+g++ results:
 Applying operation 100000000 times (sequence length 1000 by 100000 iterations) at: Sat May 10 12:21:51 2014
           type	  plus	 fplus	 times	  norm	 cnvrt	   div	   mod	  sqrt	   pow
  vector<int8_t>	  0.20	  3.25	  0.48	  0.65	  1.84	  3.95	  3.95	  8.91	129.22	
@@ -19,11 +20,39 @@ vector<int64_t>	  1.62	  3.21	  2.98	  3.46	  1.84	 15.39	 15.62	  9.17	132.91
     list<float>	  4.89	  5.21	  4.87	  4.87	  4.89	  5.55	 13.00	  8.78	135.57	
    list<double>	  4.90	  5.20	  4.87	  4.87	  4.88	  9.13	 10.78	  8.99	133.50
 
+clang++ results:
+Applying operation 100000000 times (sequence length 1000 by 100000 iterations) at: Sat May 10 16:58:12 2014
+          type	  plus	 fplus	 times	  norm	 cnvrt	   div	   mod	  sqrt	   pow
+ vector<int8_t>	  0.20	  2.76	  0.91	  0.99	  2.30	  4.18	  4.19	  8.49	130.40	
+vector<int16_t>	  0.38	  3.21	  0.39	  0.44	  2.30	  4.14	  4.14	  8.70	131.97	
+vector<int32_t>	  0.76	  3.22	  1.00	  1.35	  2.98	  3.94	  4.14	  8.70	132.26	
+vector<int64_t>	  1.73	  3.21	  1.02	  1.84	  3.21	 15.79	 15.89	  8.70	133.09	
+  vector<float>	  0.76	  3.21	  0.76	  0.89	  0.76	  1.39	 32.61	  8.71	133.17	
+ vector<double>	  1.51	  3.21	  1.51	  1.81	  1.50	  4.59	 33.34	  8.70	132.82	
+  deque<int8_t>	  3.33	  5.98	  3.36	  3.80	  4.26	  6.10	  6.11	 10.92	132.13	
+ deque<int16_t>	  4.13	  6.87	  4.13	  4.58	  4.59	  6.42	  6.43	 11.11	134.27	
+ deque<int32_t>	  4.12	  6.87	  4.12	  4.58	  5.04	  6.01	  6.46	 11.14	133.64	
+ deque<int64_t>	  3.68	  5.96	  5.04	  4.60	  4.59	 19.08	 19.16	 11.16	135.06	
+   deque<float>	  4.59	  6.88	  5.04	  5.04	  4.58	  5.96	 36.10	  8.84	133.31	
+  deque<double>	  5.05	  5.51	  4.59	  4.59	  5.05	  9.17	 35.07	  8.78	135.87	
+   list<int8_t>	  4.86	  5.17	  4.86	  4.86	  4.81	  4.86	  4.85	 10.84	133.56	
+  list<int16_t>	  5.16	  5.49	  5.16	  5.12	  4.99	  4.86	  4.81	 11.02	135.74	
+  list<int32_t>	  4.86	  5.18	  4.86	  4.86	  4.83	  4.81	  4.83	 11.00	135.16	
+  list<int64_t>	  4.87	  5.18	  4.85	  4.85	  4.84	 16.56	 16.72	 10.98	135.01	
+    list<float>	  4.86	  5.18	  4.85	  4.85	  4.85	  5.50	 32.79	  8.72	135.14	
+   list<double>	  4.87	  5.18	  4.86	  4.85	  4.86	  9.17	 32.57	  8.71	135.76
+
 build:
 g++ -std=c++11 -O3 -Wall -Wextra -pedantic -o "transformbench" "transformbench.cpp"
+clang++ -std=c++11 -O3 -stdlib=libc++ -lc++abi -o transformbench-clang transformbench.cpp
 
 g++ --version:
 g++ (GCC) 4.9.0 20140507 (prerelease)
+
+clang++ --version:
+clang version 3.4 (tags/RELEASE_34/final)
+libc++ 3.4
+libc++abi 3.2
 
 uname -a:
 Linux bangkok 3.14.2-1-ARCH #1 SMP PREEMPT Sun Apr 27 11:28:44 CEST 2014 x86_64 GNU/Linux
