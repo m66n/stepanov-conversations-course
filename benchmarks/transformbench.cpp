@@ -122,7 +122,7 @@ struct norm
 };
 
 template <Number T>
-struct conversion 
+struct conversion
 {
   T operator()(const T& x, const T& y) { return T(double(x) + double(y)); }
 };
@@ -131,7 +131,7 @@ template <Number N>
 struct square_root
 {
   N operator()(N x, N y) {
-    return N(sqrt(abs(x + y))); 
+    return N(sqrt(abs(x + y)));
   }
 };
 
@@ -139,7 +139,7 @@ template <Number N>
 struct cube_root_pow
 {
   N operator()(N x, N y) {
-    return N(pow(abs(x + y), 1.0/3.0)); 
+    return N(pow(abs(x + y), 1.0/3.0));
   }
 };
 
@@ -205,25 +205,25 @@ std::string type_description(const std::list<T, Alloc>&) { return std::string("l
 void print_header(size_t n, size_t m) {
   time_t now = time(0);
 
-  std::cout << "Applying operation " 
-	    << n * m << " times" 
-	    << " (sequence length " << n << " by " << m << " iterations)"
-	    << " at: " << asctime(localtime(&now))
-	    << std::setw(15) << "  type\t"
-	    << "  plus\t"
-	    << " fplus\t"
-	    << " times\t" 
-	    << "  norm\t" 
-	    << " cnvrt\t" 
-	    << "   div\t" 
-	    << "   mod\t"
+  std::cout << "Applying operation "
+      << n * m << " times"
+      << " (sequence length " << n << " by " << m << " iterations)"
+      << " at: " << asctime(localtime(&now))
+      << std::setw(15) << "  type\t"
+      << "  plus\t"
+      << " fplus\t"
+      << " times\t"
+      << "  norm\t"
+      << " cnvrt\t"
+      << "   div\t"
+      << "   mod\t"
       << "  sqrt\t"
-	    << "   pow"
+      << "   pow"
       << std::endl;
 }
 
 template <Number T, template <Number N, class Alloc = std::allocator<N> > class Seq>
-struct test_instructions 
+struct test_instructions
 {
   void operator()(size_t n, size_t m) {
     std::vector<T> data(n);
@@ -251,17 +251,17 @@ template <template <Number N, class Alloc = std::allocator<N> > class Seq>
 struct test_all_types
 {
   void operator() (size_t n, size_t m) {
-    test_instructions<int8_t, Seq>()(n, m); 
-    test_instructions<int16_t, Seq>()(n, m); 
-    test_instructions<int32_t, Seq>()(n, m); 
-    test_instructions<int64_t, Seq>()(n, m); 
-    test_instructions<float, Seq>()(n, m); 
+    test_instructions<int8_t, Seq>()(n, m);
+    test_instructions<int16_t, Seq>()(n, m);
+    test_instructions<int32_t, Seq>()(n, m);
+    test_instructions<int64_t, Seq>()(n, m);
+    test_instructions<float, Seq>()(n, m);
     test_instructions<double, Seq>()(n, m);
   }
-}; 
+};
 
 int main(int argc, char* argv[]) {
-  uint64_t n = 1000; 
+  uint64_t n = 1000;
   if (argc == 2) n = atoi(argv[1]);
   uint64_t m(100000000 / n);
   print_header(n, m);
