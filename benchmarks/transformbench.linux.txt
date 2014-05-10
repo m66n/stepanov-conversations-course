@@ -22,6 +22,9 @@ vector<int64_t>	  1.62	  3.21	  2.98	  3.46	  1.84	 15.39	 15.62	  9.17	132.91
 build:
 g++ -std=c++11 -O3 -Wall -Wextra -pedantic -o "transformbench" "transformbench.cpp"
 
+g++ --version:
+g++ (GCC) 4.9.0 20140507 (prerelease)
+
 uname -a:
 Linux bangkok 3.14.2-1-ARCH #1 SMP PREEMPT Sun Apr 27 11:28:44 CEST 2014 x86_64 GNU/Linux
 
